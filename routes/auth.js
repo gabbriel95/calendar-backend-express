@@ -11,6 +11,7 @@ const {
   revalidadToken,
 } = require("../controllers/auth");
 const { validarCampos } = require("../middlewares/validar-campos");
+const { validarJWT } = require("../middlewares/validar-jwt");
 const router = express.Router();
 
 router.post(
@@ -38,6 +39,6 @@ router.post(
   loginUsuario
 );
 
-router.get("/renew", revalidadToken);
+router.get("/renew", validarJWT, revalidadToken);
 
 module.exports = router;
